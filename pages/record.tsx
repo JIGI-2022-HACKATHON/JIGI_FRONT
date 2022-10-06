@@ -4,6 +4,7 @@ import { position, PositionType } from "../model/positon";
 import SelectBox from "../components/common/select/SelectBox";
 import SelectInput from "../components/common/select/SelectInput";
 import getWeekNumber from "../util/function/getWeekNumber";
+import DefaultButton from "../components/common/button/DefaultButton";
 
 interface ValueType {
   position: PositionType | "";
@@ -66,7 +67,7 @@ const Record = () => {
         <textarea placeholder="개발 기록을 입력해주세요"></textarea>
       </div>
       <RegisterBox>
-        <button value={"등록하기"} />
+        <DefaultButton>기록하기</DefaultButton>
       </RegisterBox>
     </Wrapper>
   );
@@ -74,6 +75,7 @@ const Record = () => {
 
 const RegisterBox = styled.div`
   height: 200px;
+  margin-top: 40px;
   display: flex;
   justify-content: end;
   > button {

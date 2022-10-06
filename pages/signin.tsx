@@ -4,6 +4,8 @@ import DefaultButton from "../components/common/button/DefaultButton";
 import DefaultInput from "../components/common/input/DefaultInput";
 import { instance } from "../util/api/instance";
 import { useRouter } from "next/router";
+import { NextApiRequest, NextApiResponse } from "next";
+import cookies from "next-cookies";
 const SignIn = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -12,6 +14,7 @@ const SignIn = () => {
     try {
       const { data } = await instance.post("/login", { email, password });
       localStorage.setItem("access_token", data.accessToken);
+      document.cookie = `access_token=${data.accessToken}`;
       router.push("/");
     } catch (error: any) {
       alert(error.response.data.msg);
@@ -77,4 +80,5 @@ const Wrapper = styled.div`
     }
   }
 `;
+
 export default SignIn;
