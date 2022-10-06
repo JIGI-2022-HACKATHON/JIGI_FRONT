@@ -4,14 +4,16 @@ import { InputProps } from "../../../interface/common/input";
 
 const DefaultInput = ({
   value,
-  disable,
+  disable = false,
   width,
   onChange,
   onFocus,
   placeholder,
+  type = "text",
 }: InputProps) => {
   return (
     <InputBox
+      type={type}
       disabled={disable}
       placeholder={placeholder}
       disable={disable}

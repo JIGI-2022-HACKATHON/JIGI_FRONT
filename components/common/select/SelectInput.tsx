@@ -2,7 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import SelectList from "./SelectList";
 import { SelectListProps } from "../../../interface/common/select";
-import { position, PositionType } from "../../../model/positon";
 import DefaultInput from "../input/DefaultInput";
 import { useState } from "react";
 import { useEffect } from "react";

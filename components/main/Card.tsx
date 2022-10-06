@@ -15,11 +15,21 @@ const Card = ({ idx, tags, title }: CardProps) => {
           <h1>{title}</h1>
         </header>
         <div className="tagBox">
-          {tags.map((tag, idx) => (
-            <DefaultTag key={idx} size="lg">
-              {tag}
-            </DefaultTag>
-          ))}
+          {tags.map((tag, idx) => {
+            const colorNumber = [
+              "blue100",
+              "blue300",
+              "blue500",
+              "blue700",
+              "blue900",
+            ];
+            const color = colorNumber[idx];
+            return (
+              <DefaultTag key={idx} size="lg" color={color}>
+                {tag}
+              </DefaultTag>
+            );
+          })}
         </div>
       </div>
     </Wrapper>
