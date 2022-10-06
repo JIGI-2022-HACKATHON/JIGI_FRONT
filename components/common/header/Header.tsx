@@ -37,9 +37,12 @@ const Box = styled.div`
 `;
 const Wrapper = styled.header`
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
+
+  background-color: ${({ theme }) => theme.white};
 
   height: 60px;
   border: solid 1px #f5f5f5;

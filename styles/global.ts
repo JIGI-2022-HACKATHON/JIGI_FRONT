@@ -11,6 +11,7 @@ const global = css`
     list-style: none;
     font-style: normal;
     text-decoration: none;
+    user-select:none
 }
 a{
     color: #000;
