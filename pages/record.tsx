@@ -11,7 +11,7 @@ interface ValueType {
   detailApis: string;
 }
 
-const record = () => {
+const Record = () => {
   const [value, setValue] = useState<ValueType>({
     position: "",
     library: "",
@@ -118,4 +118,4 @@ const Wrapper = styled.div`
     }
   }
 `;
-export default record;
+export default Record;
