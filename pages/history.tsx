@@ -1,11 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Img from "../assets/img/history.png";
 import Image from "next/image";
-import { position } from "../model/positon";
+import { position, PositionType } from "../model/positon";
 import SelectBox from "../components/common/select/SelectBox";
+import { grade, GradeType } from "../model/grade";
+import Card from "../components/main/Card";
 
 const History = () => {
+  const array = [
+    { title: "REACT", tags: ["useState", "useEffect", "useRef", "portal"] },
+    {
+      title: "NEXT",
+      tags: ["getServerSideProps", "dehydrate", "useQuery", "getStaticPaths"],
+    },
+    { title: "TYPESCRIPT", tags: ["interface", "enum", "Generic", "extends"] },
+  ];
+  const array2 = [
+    {
+      title: "SPRING BOOT",
+      tags: ["DI", "AOC", "portal", ""],
+    },
+    {
+      title: "NEST.JS",
+      tags: ["getServerSideProps", "dehydrate", "useQuery", "getStaticPaths"],
+    },
+    { title: "DJANGO", tags: ["interface", "enum", "Generic", "extends"] },
+  ];
+  const [viewArray, setViewArray] = useState([]);
+  const [value, setValue] = useState<PositionType>("FRONTEND");
+  useEffect(() => {
+    if (value == "FRONTEND") setViewArray(array);
+    else if (value == "BACKEND") setViewArray(array2);
+  }, [value]);
   return (
     <Wrapper>
       <div className="top">
@@ -39,6 +66,16 @@ const History = () => {
               placeholder="FRONTEND"
             />
           </div>
+          <main>
+            {viewArray?.map((record, idx) => (
+              <Card
+                idx={idx + 1}
+                title={record.title}
+                tags={record.tags}
+                key={idx}
+              />
+            ))}
+          </main>
         </div>
       </div>
     </Wrapper>
@@ -70,18 +107,28 @@ const Wrapper = styled.div`
   }
   > .bottom {
     background-color: ${({ theme }) => theme.background_gray};
+    padding-bottom: 200px;
     > .history_container {
+      position: relative;
       display: flex;
-      justify-content: end;
+      flex-direction: column;
       margin: 0 auto;
       padding-top: 119px;
       width: 939px;
       height: 435px;
       > .fillterBox {
+        position: absolute;
+        right: 0px;
         width: 406px;
         display: flex;
         justify-content: space-between;
       }
+    }
+    main {
+      position: absolute;
+      margin-top: 80px;
+      display: flex;
+      gap: 20px;
     }
   }
 `;
