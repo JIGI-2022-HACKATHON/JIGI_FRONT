@@ -34,19 +34,16 @@ const InputBox = styled.input<{ width: string; disable: boolean }>`
   display: flex;
   align-items: center;
   padding: 16px;
-  height: 43px;
+  height: 32px;
   border: 1px solid ${({ theme }) => theme.dark_gray};
   border-radius: 8px;
   margin-bottom: 4px;
   display: flex;
   justify-content: space-between;
   color: ${({ disable, theme }) => (disable ? theme.white : theme.black)};
-  font-size: 16px;
-  > h1 {
-    font-size: 16px;
-  }
+  font-size: 14px;
   ::placeholder {
-    font-size: 16px;
+    font-size: 14px;
     color: ${({ disable, theme }) => (disable ? theme.white : theme.black)};
   }
 `;

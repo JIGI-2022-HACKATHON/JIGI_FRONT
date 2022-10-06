@@ -21,7 +21,7 @@ const DefaultButton = ({
 const DefualtButtonContainer = styled.div<{
   color: Required<DefaultButtonProps>["color"];
 }>`
-  width: 165px;
+  width: 156px;
   height: 45px;
   border-radius: 8px;
   background-color: ${({ theme, color }) => theme[color]};

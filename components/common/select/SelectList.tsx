@@ -44,7 +44,7 @@ const Wrapper = styled.div<{ width: string }>`
     display: flex;
     align-items: center;
     padding: 16px;
-    height: 43px;
+    height: 32px;
     background-color: ${({ theme }) => theme.white};
   }
   > * + * {

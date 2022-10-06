@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const signIn = () => {
+const SignIn = () => {
   return (
     <>
       <h1>로그인</h1>
@@ -7,4 +7,4 @@ const signIn = () => {
   );
 };
 
-export default signIn;
+export default SignIn;

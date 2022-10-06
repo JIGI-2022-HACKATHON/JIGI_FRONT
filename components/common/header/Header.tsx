@@ -12,18 +12,18 @@ const Header = () => {
           <Image src={Logo} alt="logoImg" />
           <ul>
             <li>
-              <Link href={"/"}>역사보기</Link>
+              <Link href={"/history"}>역사보기</Link>
             </li>
             <li>
               <Link href={"/record"}>기록하기</Link>
             </li>{" "}
             <li>
-              <Link href={"/"}>마이페이지</Link>
+              <Link href={"/mypage"}>마이페이지</Link>
             </li>
           </ul>
 
           <div className="nameBox">
-            <p>안녕하세요 {"김의찬"}님</p>
+            안녕하세요 <p className="name">{"김의찬"}</p> 님
           </div>
         </div>
       </Wrapper>
@@ -66,6 +66,9 @@ const Wrapper = styled.header`
     > .nameBox {
       display: flex;
       align-items: center;
+      > .name {
+        color: ${({ theme }) => theme.primary};
+      }
     }
   }
 `;

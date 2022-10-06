@@ -42,10 +42,11 @@ const SelectBox = <T extends string>({
         }}
       >
         <p>{selectedValue}</p>
-        <Image src={Arrow} />
+        <Image src={Arrow} alt="img" />
       </ItemBox>
       {items.length > 0 && isOpen && (
         <SelectList
+          width={width}
           setIsOpen={() => setIsOpen((state) => !state)}
           items={items}
           onClickValue={(value) => {
@@ -58,8 +59,6 @@ const SelectBox = <T extends string>({
   );
 };
 
-const Wrapper = styled.div``;
-
 const ItemBox = styled.div<{ width: string; disable: boolean }>`
   position: relative;
   background-color: ${({ theme }) => theme.white};
@@ -68,11 +67,12 @@ const ItemBox = styled.div<{ width: string; disable: boolean }>`
   display: flex;
   align-items: center;
   padding: 16px;
-  height: 43px;
+  height: 32px;
   border: 1px solid ${({ theme }) => theme.dark_gray};
   border-radius: 8px;
   margin-bottom: 4px;
   display: flex;
+  font-size: 14px;
   justify-content: space-between;
   ${({ disable }) => (disable ? "pointer-events: none" : "")};
   color: ${({ disable, theme }) => (disable ? theme.light_gray : theme.black)};
