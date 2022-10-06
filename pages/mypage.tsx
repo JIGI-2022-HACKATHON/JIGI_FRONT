@@ -22,7 +22,7 @@ const Mypage = () => {
       <OtherInfo>
         <div>
           대덕 소프트웨어 마이스터고
-          <DefaultTag>1학년</DefaultTag>
+          <DefaultTag>2학년</DefaultTag>
         </div>
         <SelectBox
           items={grade}
@@ -34,46 +34,34 @@ const Mypage = () => {
       <RecordCardWrapper>
         <RecordCard
           date="10월 2주차"
-          tags={["FRONTEND", "REACT", "USESTATE"]}
-          text="ㅁ너라ㅣㅁ너"
-          userInfo="대덕 소프트웨어 마이스터고 안은결"
+          tags={["FRONTEND", "NEXTJS", "GETSERVERSIDEPROPS"]}
+          text="getServerSideProps 는 SSR 을 위한 함수입니다."
           onClick={() => {}}
         ></RecordCard>
         <RecordCard
-          date="10월 2주차"
-          tags={["FRONTEND", "REACT", "USESTATE"]}
-          text="ㅁ너라ㅣㅁ너"
-          userInfo="대덕 소프트웨어 마이스터고 안은결"
+          date="9월 2주차"
+          tags={["DEVOPS", "CI/CD", "GITHUB_ACTION"]}
+          text="github action 으로 ci/cd 를 편하게 할 수 있습니다."
         ></RecordCard>
         <RecordCard
-          date="10월 2주차"
-          tags={["FRONTEND", "REACT", "USESTATE"]}
-          text="ㅁ너라ㅣㅁ너"
-          userInfo="대덕 소프트웨어 마이스터고 안은결"
+          date="7월 2주차"
+          tags={["FRONTEND", "REACT", "POTAL"]}
+          text="포탈은 root 가 아닌 다른 테그를 만들어줍니다."
         ></RecordCard>
         <RecordCard
-          date="10월 2주차"
-          tags={["FRONTEND", "REACT", "USESTATE"]}
-          text="ㅁ너라ㅣㅁ너"
-          userInfo="대덕 소프트웨어 마이스터고 안은결"
+          date="5월 4주차"
+          tags={["FRONTEND", "REACT", "AXIOS"]}
+          text="interceptor 을 사용하여 access 및 refrash를 할 수 있습니다."
         ></RecordCard>
         <RecordCard
-          date="10월 2주차"
-          tags={["FRONTEND", "REACT", "USESTATE"]}
-          text="ㅁ너라ㅣㅁ너"
-          userInfo="대덕 소프트웨어 마이스터고 안은결"
+          date="5월 1주차"
+          tags={["FRONTEND", "BABEL", "TREESHACKING"]}
+          text="BABEL 5 에서는 tree shaking 이 별도의 설정없이 자동으로 이루어집니다."
         ></RecordCard>
         <RecordCard
-          date="10월 2주차"
-          tags={["FRONTEND", "REACT", "USESTATE"]}
-          text="ㅁ너라ㅣㅁ너"
-          userInfo="대덕 소프트웨어 마이스터고 안은결"
-        ></RecordCard>
-        <RecordCard
-          date="10월 2주차"
-          tags={["FRONTEND", "REACT", "USESTATE"]}
-          text="ㅁ너라ㅣㅁ너"
-          userInfo="대덕 소프트웨어 마이스터고 안은결"
+          date="4월 4주차"
+          tags={["FRONTEND", "REACT", "ESBUILD"]}
+          text="ESBUILD 는 BABEL 보다 빌드속도가 100배 빠릅니다"
         ></RecordCard>
       </RecordCardWrapper>
     </Container>

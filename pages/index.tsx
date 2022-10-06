@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     getCurrentWeek("FIRST", value)
   );
 
-  const token = localStorage.getItem("access_token");
+  // const token = localStorage.getItem("access_token");
 
   return (
     <Wrapper>
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
           <div className="buttonBox">
             <DefaultButton
               color="dark_gray"
-              onClick={() => router.push(token ? "/my_page" : "/signin")}
+              onClick={() => router.push("/mypage")}
             >
               자신의 역사 확인하기
             </DefaultButton>
