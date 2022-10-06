@@ -9,11 +9,13 @@ const SignIn = () => {
   const [password, setPassword] = useState<string>("");
   const router = useRouter();
   const signIn = async (email: string, password: string) => {
-    const { data } = await instance.post("/login", { email, password });
-    router.push("/");
-    console.log(data);
-
-    localStorage.setItem("access_token", data.accessToken);
+    try {
+      const { data } = await instance.post("/login", { email, password });
+      localStorage.setItem("access_token", data.accessToken);
+      router.push("/");
+    } catch (error: any) {
+      alert(error.response.data.msg);
+    }
   };
   return (
     <Wrapper>
