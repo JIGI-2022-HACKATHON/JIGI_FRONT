@@ -46,6 +46,9 @@ const Home: NextPage = () => {
     if (value == "FRONTEND") setViewArray(array);
     else if (value == "BACKEND") setViewArray(array2);
   }, [value]);
+
+  // const token = localStorage.getItem("access_token");
+
   return (
     <Wrapper>
       <div className="top">
@@ -55,7 +58,7 @@ const Home: NextPage = () => {
           <div className="buttonBox">
             <DefaultButton
               color="dark_gray"
-              onClick={() => router.push(true ? "/my_page" : "/signin")}
+              onClick={() => router.push("/mypage")}
             >
               자신의 역사 확인하기
             </DefaultButton>

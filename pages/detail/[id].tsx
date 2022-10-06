@@ -8,51 +8,55 @@ import { getAllDetail } from "../../util/api/record";
 import { apiPath } from "../../util/apiPath";
 
 const Detail = () => {
-  const { query } = useRouter();
-  const path = query.id ? apiPath.record.getDetail(query.id as string) : "";
-  const { data: detailData } = useQuery(path, () =>
-    getAllDetail(query.id as string)
-  );
+  //   const { query } = useRouter();
+  //   const path = query.id ? apiPath.record.getDetail(query.id as string) : "";
+  //   const { data: detailData } = useQuery(path, () =>
+  //     getAllDetail(query.id as string)
+  //   );
 
-  console.log(detailData);
+  const route = useRouter();
+
+  //   console.log(detailData);
   return (
     <Container>
       <Title>
-        {}님의 <i>10월 2주차</i> 개발일지
+        김의찬님의 <i>10월 1주차</i> 개발일지
       </Title>
       <TagWrapper>
         <div>
           분야 <DefaultTag size="lg">FRONTEND</DefaultTag>
         </div>
         <div>
-          프레임워크/라이브러리 <DefaultTag size="lg">FRONTEND</DefaultTag>
+          프레임워크/라이브러리 <DefaultTag size="lg">REACT</DefaultTag>
         </div>
         <div>
-          세부API <DefaultTag size="lg">FRONTEND</DefaultTag>
+          세부API <DefaultTag size="lg">USESTATE</DefaultTag>
         </div>
       </TagWrapper>
-      <TextBox></TextBox>
+      <TextBox>useState는 비동기적으로 작동합니다.</TextBox>
       <ButtonWrapper>
-        <DefaultButton>뒤로가기</DefaultButton>
+        <DefaultButton onClick={() => route.push("/record_detail")}>
+          뒤로가기
+        </DefaultButton>
       </ButtonWrapper>
     </Container>
   );
 };
 
-export const getServerSideProps: GetServerSideProps<
-  {},
-  { id: string }
-> = async ({ params }) => {
-  const queryClient = new QueryClient();
-  const path = params?.id ? apiPath.record.getDetail(params.id) : "";
-  params?.id &&
-    (await queryClient.prefetchQuery(path, () => getAllDetail(params.id)));
-  return {
-    props: {
-      dehydratedState: queryClient,
-    },
-  };
-};
+// export const getServerSideProps: GetServerSideProps<
+//   {},
+//   { id: string }
+// > = async ({ params }) => {
+//   const queryClient = new QueryClient();
+//   const path = params?.id ? apiPath.record.getDetail(params.id) : "";
+//   params?.id &&
+//     (await queryClient.prefetchQuery(path, () => getAllDetail(params.id)));
+//   return {
+//     props: {
+//       dehydratedState: queryClient,
+//     },
+//   };
+// };
 
 const Container = styled.div`
   width: 940px;
