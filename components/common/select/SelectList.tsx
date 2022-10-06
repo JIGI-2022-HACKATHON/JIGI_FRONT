@@ -39,6 +39,7 @@ const Wrapper = styled.div<{ width: string }>`
   border-radius: 8px;
   max-height: 200px;
   overflow: auto;
+  z-index: 1;
   > .itemBox {
     cursor: pointer;
     display: flex;

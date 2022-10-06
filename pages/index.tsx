@@ -51,29 +51,14 @@ const Home: NextPage = () => {
             />
           </div>
           <main>
-            {/* {recordList?.map((record, idx) => (
+            {recordList?.map((record, idx) => (
               <Card
                 idx={idx + 1}
                 title={record.framework}
                 tags={record.details.map((detail) => detail.name)}
                 key={idx}
               />
-            ))} */}
-            <Card
-              idx={1}
-              title={"SPRINGBOOTaaa"}
-              tags={["abcd", "abcd", "abcd", "abcd", "abcd"]}
-            />
-            <Card
-              idx={1}
-              title={"SPRINGBOOTaaa"}
-              tags={["abcd", "abcd", "abcd", "abcd", "abcd"]}
-            />{" "}
-            <Card
-              idx={1}
-              title={"SPRINGBOOTaaa"}
-              tags={["abcd", "abcd", "abcd", "abcd", "abcd"]}
-            />
+            ))}
           </main>
         </div>
       </div>

@@ -22,7 +22,7 @@ const Card = ({ idx, tags, title }: CardProps) => {
               "blue500",
               "blue700",
               "blue900",
-            ];
+            ] as const;
             const color = colorNumber[idx];
             return (
               <DefaultTag key={idx} size="lg" color={color}>
@@ -46,6 +46,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
   > .container {
     display: flex;
     align-items: center;

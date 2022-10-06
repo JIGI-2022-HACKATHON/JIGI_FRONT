@@ -2,9 +2,19 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import DefaultButton from "../components/common/button/DefaultButton";
 import DefaultInput from "../components/common/input/DefaultInput";
+import { instance } from "../util/api/instance";
+import { useRouter } from "next/router";
 const SignIn = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const router = useRouter();
+  const signIn = async (email: string, password: string) => {
+    const { data } = await instance.post("/login", { email, password });
+    router.push("/");
+    console.log(data);
+
+    localStorage.setItem("access_token", data.accessToken);
+  };
   return (
     <Wrapper>
       <div className="container">
@@ -26,7 +36,13 @@ const SignIn = () => {
             onChange={(value) => setPassword(value)}
           />
         </div>
-        <DefaultButton>로그인</DefaultButton>
+        <DefaultButton
+          onClick={() => {
+            signIn(email, password);
+          }}
+        >
+          로그인
+        </DefaultButton>
       </div>
     </Wrapper>
   );
@@ -52,7 +68,7 @@ const Wrapper = styled.div`
     justify-content: space-around;
     align-items: center;
     > .inputBox {
-      height: 100px;
+      height: 80px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
