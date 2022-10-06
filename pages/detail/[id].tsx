@@ -1,12 +1,24 @@
 import styled from "@emotion/styled";
+import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import { QueryClient, useQuery } from "react-query";
 import DefaultButton from "../../components/common/button/DefaultButton";
 import DefaultTag from "../../components/common/tag/DefaultTag";
+import { getAllDetail } from "../../util/api/record";
+import { apiPath } from "../../util/apiPath";
 
 const Detail = () => {
+  const { query } = useRouter();
+  const path = query.id ? apiPath.record.getDetail(query.id as string) : "";
+  const { data: detailData } = useQuery(path, () =>
+    getAllDetail(query.id as string)
+  );
+
+  console.log(detailData);
   return (
     <Container>
       <Title>
-        안은결님의 <i>10월 2주차</i> 개발일지
+        {}님의 <i>10월 2주차</i> 개발일지
       </Title>
       <TagWrapper>
         <div>
@@ -25,6 +37,21 @@ const Detail = () => {
       </ButtonWrapper>
     </Container>
   );
+};
+
+export const getServerSideProps: GetServerSideProps<
+  {},
+  { id: string }
+> = async ({ params }) => {
+  const queryClient = new QueryClient();
+  const path = params?.id ? apiPath.record.getDetail(params.id) : "";
+  params?.id &&
+    (await queryClient.prefetchQuery(path, () => getAllDetail(params.id)));
+  return {
+    props: {
+      dehydratedState: queryClient,
+    },
+  };
 };
 
 const Container = styled.div`

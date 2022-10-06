@@ -11,13 +11,16 @@ import { getCurrentWeek } from "../util/api/record";
 import { apiPath } from "../util/apiPath";
 import { position, PositionType } from "../model/positon";
 import Card from "../components/main/Card";
+import { useRouter } from "next/router";
 const Home: NextPage = () => {
   const [value, setValue] = useState<PositionType>("FRONTEND");
   const path = apiPath.record.getCurrentWeek("FIRST", value);
-
+  const router = useRouter();
   const { data: recordList } = useQuery(path, () =>
     getCurrentWeek("FIRST", value)
   );
+
+  const token = localStorage.getItem("access_token");
 
   return (
     <Wrapper>
@@ -26,7 +29,10 @@ const Home: NextPage = () => {
           <p>자신의 개발을 기록하고, 자신의 성장을 확인해보세요!</p>
           <Image src={JIGI} alt="img" />
           <div className="buttonBox">
-            <DefaultButton color="dark_gray">
+            <DefaultButton
+              color="dark_gray"
+              onClick={() => router.push(token ? "/my_page" : "/signin")}
+            >
               자신의 역사 확인하기
             </DefaultButton>
             <DefaultButton color="primary">자신의 기록 남기기</DefaultButton>
@@ -42,6 +48,13 @@ const Home: NextPage = () => {
         <div className="keyword_container">
           <div className="head">
             <h1>이번 주 인기 키워드</h1>
+            <SelectBox
+              width={"122px"}
+              items={position}
+              value={value}
+              onClickValue={setValue}
+              placeholder={"FRONT_END"}
+            />
             <SelectBox
               width={"122px"}
               items={position}
@@ -116,9 +129,9 @@ const Wrapper = styled.div`
       width: 940px;
       height: 464px;
       > .head {
-        width: 362px;
         display: flex;
-        justify-content: space-between;
+        gap: 14px;
+
         > h1 {
           font-size: 28px;
         }

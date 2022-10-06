@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import DefaultTag from "../components/common/tag/DefaultTag";
 import RecordCard from "../components/common/RecordCard";
 import SelectBox from "../components/common/select/SelectBox";
+import { GetServerSideProps } from "next";
+import { apiPath } from "../util/apiPath";
+import { grade, GradeType } from "../model/grade";
+import { useQuery } from "react-query";
+import { getMyPage } from "../util/api/user";
 const Mypage = () => {
+  const [gradeValue, setGradeValue] = useState<GradeType>("FIRST");
+  const myInfoPath = apiPath.user.mypage(gradeValue);
+  const { data: myInformationData } = useQuery(myInfoPath, () =>
+    getMyPage(gradeValue)
+  );
+
+  console.log(myInformationData);
   return (
     <Container>
       <TitleName>김의찬</TitleName>
@@ -13,7 +25,8 @@ const Mypage = () => {
           <DefaultTag>1학년</DefaultTag>
         </div>
         <SelectBox
-          items={["1학년", "2학년"]}
+          items={grade}
+          onClickValue={setGradeValue}
           placeholder="학년을 선택해주세요"
           width="220px"
         ></SelectBox>
@@ -66,6 +79,14 @@ const Mypage = () => {
     </Container>
   );
 };
+
+// export const getServerSideProps:GetServerSideProps = ()=>{
+//   const path = apiPath.user.mypage
+//   return ({
+
+//   })
+
+// }
 
 const Container = styled.div`
   width: 940px;

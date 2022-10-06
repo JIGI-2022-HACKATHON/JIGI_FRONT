@@ -3,15 +3,23 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../assets/img/JIGI.png";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const route = useRouter();
+
+  // const token = localStorage.getItem("accessToken");
   return (
     <>
       <Wrapper>
         <div className="navBox">
-          <Link href={"/"}>
-            <Image src={Logo} alt="logoImg" />
-          </Link>
+          <Image
+            src={Logo}
+            alt="logoImg"
+            onClick={() => route.push("/")}
+            style={{ cursor: "pointer" }}
+          />
+
           <ul>
             <li>
               <Link href={"/history"}>역사보기</Link>
@@ -23,10 +31,16 @@ const Header = () => {
               <Link href={"/mypage"}>마이페이지</Link>
             </li>
           </ul>
-
-          <div className="nameBox">
-            안녕하세요 <p className="name">{"김의찬"}</p> 님
-          </div>
+          {/* {token ? (
+            <div className="nameBox">
+              안녕하세요 <i className="name">{"김의찬"}</i> 님
+            </div>
+          ) : (
+            <div>
+              <p>로그인</p>
+              <p>회원가입</p>
+            </div>
+          )} */}
         </div>
       </Wrapper>
       <Box></Box>
@@ -65,11 +79,21 @@ const Wrapper = styled.header`
       width: 352px;
       justify-content: space-between;
     }
-    > .nameBox {
+    > div {
       display: flex;
       align-items: center;
-      > .name {
+      > p {
+        font-size: 16px;
+        font-weight: 400;
+        padding: 0 12px;
+        cursor: pointer;
+      }
+      > i {
         color: ${({ theme }) => theme.primary};
+        font-style: none;
+      }
+      * + * {
+        border-left: 1px solid black;
       }
     }
   }

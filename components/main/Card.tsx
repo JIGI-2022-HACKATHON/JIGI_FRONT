@@ -39,7 +39,7 @@ const Card = ({ idx, tags, title }: CardProps) => {
 export default Card;
 const Wrapper = styled.div`
   width: 300px;
-  height: 383px;
+  padding: 24px 24px;
   box-shadow: 0px 0px 10px 5px rgba(112, 112, 112, 0.25);
   border-radius: 12px;
   display: flex;
@@ -56,8 +56,15 @@ const Wrapper = styled.div`
     > header {
       > p {
         text-align: center;
+        font-weight: 600;
         font-size: 32px;
         color: ${({ theme }) => theme.primary};
+        margin-bottom: 4px;
+      }
+      > h1 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 20px;
       }
     }
     > .tagBox {
