@@ -2,18 +2,20 @@ import styled from "@emotion/styled";
 import DefaultTag from "../common/tag/DefaultTag";
 import React from "react";
 interface CardProps {
-  item: { idx: number; title: string; tags: string[] };
+  idx: number;
+  title: string;
+  tags: string[];
 }
-const Card = ({ item }: CardProps) => {
+const Card = ({ idx, tags, title }: CardProps) => {
   return (
     <Wrapper>
       <div className="container">
         <header>
-          <p>{item.idx}</p>
-          <h1>{item.title}</h1>
+          <p>{idx}</p>
+          <h1>{title}</h1>
         </header>
         <div className="tagBox">
-          {item.tags.map((tag, idx) => (
+          {tags.map((tag, idx) => (
             <DefaultTag key={idx} size="lg">
               {tag}
             </DefaultTag>

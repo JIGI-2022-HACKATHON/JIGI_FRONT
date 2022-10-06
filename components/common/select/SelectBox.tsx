@@ -10,14 +10,14 @@ import OutsideClickHandler from "react-outside-click-handler";
 
 interface SelectProps<T> extends SelectListProps<T> {
   placeholder: string;
-  disable: boolean;
+  disable?: boolean;
   value?: T;
   mRef?: React.Ref<HTMLInputElement> | null;
 }
 const SelectBox = <T extends string>({
   placeholder,
   width = "300px",
-  disable,
+  disable = false,
   items,
   value,
   mRef,

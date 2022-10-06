@@ -1,18 +1,23 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import styled from "@emotion/styled";
 import JIGI from "../assets/img/BigLogo.png";
-import Head from "next/head";
 import Image from "next/image";
+import { dehydrate, QueryClient, useQuery } from "react-query";
 import DefaultButton from "../components/common/button/DefaultButton";
+import { useState } from "react";
 import MainIMG from "../assets/img/main.png";
 import SelectBox from "../components/common/select/SelectBox";
-import { position } from "../model/positon";
-import { useState } from "react";
-import DefaultTag from "../components/common/tag/DefaultTag";
+import { getCurrentWeek } from "../util/api/record";
+import { apiPath } from "../util/apiPath";
+import { position, PositionType } from "../model/positon";
 import Card from "../components/main/Card";
 const Home: NextPage = () => {
-  const [value, setValue] = useState("");
-  const item = [];
+  const [value, setValue] = useState<PositionType>("FRONTEND");
+  const path = apiPath.record.getCurrentWeek("FIRST", value);
+
+  const { data: recordList } = useQuery(path, () =>
+    getCurrentWeek("FIRST", value)
+  );
 
   return (
     <Wrapper>
@@ -27,24 +32,52 @@ const Home: NextPage = () => {
             <DefaultButton color="primary">자신의 기록 남기기</DefaultButton>
           </div>
         </div>
-        <Image src={MainIMG} alt="img" width={300} layout="fixed" />
+        <img
+          src={MainIMG.src}
+          alt="img"
+          style={{ width: "300px", height: "auto", objectFit: "cover" }}
+        />
       </div>
       <div className="bottom">
         <div className="keyword_container">
           <div className="head">
             <h1>이번 주 인기 키워드</h1>
             <SelectBox
-              disable={false}
               width={"122px"}
               items={position}
+              value={value}
+              onClickValue={setValue}
               placeholder={"FRONT_END"}
             />
           </div>
-          <main>{/* <Card /> */}</main>
+          <main>
+            {recordList?.map((record, idx) => (
+              <Card
+                idx={idx + 1}
+                title={record.framework}
+                tags={record.details.map((detail) => detail.name)}
+                key={idx}
+              />
+            ))}
+          </main>
         </div>
       </div>
     </Wrapper>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const queryClient = new QueryClient();
+  const queryKey = apiPath.record.getCurrentWeek("FIRST", "FRONTEND");
+  await queryClient.prefetchQuery(queryKey, () =>
+    getCurrentWeek("FIRST", "FRONTEND")
+  );
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
 };
 
 const Wrapper = styled.div`
