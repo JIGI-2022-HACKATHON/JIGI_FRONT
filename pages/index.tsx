@@ -51,14 +51,29 @@ const Home: NextPage = () => {
             />
           </div>
           <main>
-            {recordList?.map((record, idx) => (
+            {/* {recordList?.map((record, idx) => (
               <Card
                 idx={idx + 1}
                 title={record.framework}
                 tags={record.details.map((detail) => detail.name)}
                 key={idx}
               />
-            ))}
+            ))} */}
+            <Card
+              idx={1}
+              title={"SPRINGBOOTaaa"}
+              tags={["abcd", "abcd", "abcd", "abcd", "abcd"]}
+            />
+            <Card
+              idx={1}
+              title={"SPRINGBOOTaaa"}
+              tags={["abcd", "abcd", "abcd", "abcd", "abcd"]}
+            />{" "}
+            <Card
+              idx={1}
+              title={"SPRINGBOOTaaa"}
+              tags={["abcd", "abcd", "abcd", "abcd", "abcd"]}
+            />
           </main>
         </div>
       </div>
@@ -81,7 +96,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 const Wrapper = styled.div`
-  padding-bottom: 100px;
   > .top {
     position: relative;
     margin: 0 auto;
@@ -111,6 +125,7 @@ const Wrapper = styled.div`
   > .bottom {
     background-color: ${({ theme }) => theme.background_gray};
     padding-top: 68px;
+    padding-bottom: 100px;
     > .keyword_container {
       margin: 0 auto;
       width: 940px;
@@ -122,6 +137,11 @@ const Wrapper = styled.div`
         > h1 {
           font-size: 28px;
         }
+      }
+      > main {
+        margin-top: 40px;
+        display: flex;
+        gap: 20px;
       }
     }
   }

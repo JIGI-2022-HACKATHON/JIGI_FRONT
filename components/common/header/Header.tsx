@@ -9,7 +9,9 @@ const Header = () => {
     <>
       <Wrapper>
         <div className="navBox">
-          <Image src={Logo} alt="logoImg" />
+          <Link href={"/"}>
+            <Image src={Logo} alt="logoImg" />
+          </Link>
           <ul>
             <li>
               <Link href={"/history"}>역사보기</Link>
