@@ -45,7 +45,7 @@ const SelectInput = <T extends string>({
           setIsOpen(true);
         }}
       />
-      {isOpen && (
+      {isOpen && searchList(value, items).length > 0 && (
         <SelectList
           items={searchList(value, items)}
           setIsOpen={() => {

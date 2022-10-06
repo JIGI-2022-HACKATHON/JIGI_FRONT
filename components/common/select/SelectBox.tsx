@@ -44,7 +44,7 @@ const SelectBox = <T extends string>({
         <p>{selectedValue}</p>
         <Image src={Arrow} />
       </ItemBox>
-      {isOpen && (
+      {items.length > 0 && isOpen && (
         <SelectList
           setIsOpen={() => setIsOpen((state) => !state)}
           items={items}
