@@ -5,6 +5,7 @@ import SelectBox from "../components/common/select/SelectBox";
 import SelectInput from "../components/common/select/SelectInput";
 import getWeekNumber from "../util/function/getWeekNumber";
 import DefaultButton from "../components/common/button/DefaultButton";
+import { useRouter } from "next/router";
 
 interface ValueType {
   position: PositionType | "";
@@ -12,12 +13,24 @@ interface ValueType {
   detailApis: string;
 }
 
+const Framework = [
+  "REACT",
+  "NEXTJS",
+  "BABEL",
+  "ESBUILD",
+  "RECOIL",
+  "REDUX",
+] as const;
+
+const detailApi = ["USESTATE", "USEEFFECT", "POTAL"];
+
 const Record = () => {
   const [value, setValue] = useState<ValueType>({
     position: "",
     library: "",
     detailApis: "",
   });
+  const route = useRouter();
   return (
     <Wrapper>
       <div className="title">
@@ -44,7 +57,7 @@ const Record = () => {
           <SelectInput
             placeholder="프레임워크를 입력해주세요."
             disable={!value.position}
-            items={position}
+            items={Framework}
             value={value.library}
             onChangeValue={(value) =>
               setValue((state) => ({ ...state, library: value }))
@@ -58,7 +71,7 @@ const Record = () => {
             value={value.detailApis}
             placeholder="세부 API를 입력해주세요."
             disable={!value.library}
-            items={position}
+            items={detailApi}
             onChangeValue={(value) =>
               setValue((state) => ({ ...state, detailApis: value }))
             }
@@ -67,7 +80,7 @@ const Record = () => {
         <textarea placeholder="개발 기록을 입력해주세요"></textarea>
       </div>
       <RegisterBox>
-        <DefaultButton>기록하기</DefaultButton>
+        <DefaultButton onClick={() => route.push("/")}>기록하기</DefaultButton>
       </RegisterBox>
     </Wrapper>
   );

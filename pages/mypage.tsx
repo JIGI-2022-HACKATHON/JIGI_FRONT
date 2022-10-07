@@ -80,11 +80,13 @@ const Container = styled.div`
   width: 940px;
   margin: 0 auto;
 `;
+
 const TitleName = styled.div`
   font-size: 48px;
   font-weight: 600;
   margin-top: 48px;
 `;
+
 const OtherInfo = styled.div`
   display: flex;
   align-items: center;

@@ -15,7 +15,12 @@ const DefaultTag = ({
   onClick,
 }: PropsWithChildren<DefaultTagProps>) => {
   return (
-    <DefaultTagBox size={size} isClickAble={!!onClick} color={color}>
+    <DefaultTagBox
+      size={size}
+      isClickAble={!!onClick}
+      color={color}
+      onClick={onClick}
+    >
       {children}
     </DefaultTagBox>
   );

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../assets/img/JIGI.png";
@@ -7,7 +7,14 @@ import { useRouter } from "next/router";
 
 const Header = () => {
   const route = useRouter();
+  const [isLogin, setIsLogin] = useState<string | null>();
 
+  useEffect(() => {
+    if (window) {
+      const token = localStorage.getItem("access_token");
+      setIsLogin(token);
+    }
+  }, []);
   // const token = localStorage.getItem("accessToken");
   return (
     <>
@@ -31,16 +38,16 @@ const Header = () => {
               <Link href={"/mypage"}>마이페이지</Link>
             </li>
           </ul>
-          {/* {token ? (
+          {!!isLogin ? (
             <div className="nameBox">
               안녕하세요 <i className="name">{"김의찬"}</i> 님
             </div>
           ) : (
             <div>
-              <p>로그인</p>
-              <p>회원가입</p>
+              <p onClick={() => route.push("/signin")}>로그인</p>
+              <p onClick={() => route.push("/signup")}>회원가입</p>
             </div>
-          )} */}
+          )}
         </div>
       </Wrapper>
       <Box></Box>

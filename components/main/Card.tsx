@@ -1,12 +1,14 @@
 import styled from "@emotion/styled";
 import DefaultTag from "../common/tag/DefaultTag";
 import React from "react";
+import { useRouter } from "next/router";
 interface CardProps {
   idx: number;
   title: string;
   tags: string[];
 }
 const Card = ({ idx, tags, title }: CardProps) => {
+  const router = useRouter();
   return (
     <Wrapper>
       <div className="container">
@@ -25,7 +27,15 @@ const Card = ({ idx, tags, title }: CardProps) => {
             ] as const;
             const color = colorNumber[idx];
             return (
-              <DefaultTag key={idx} size="lg" color={color}>
+              <DefaultTag
+                key={idx}
+                size="lg"
+                color={color}
+                onClick={() => {
+                  console.log(1);
+                  router.push("/record_detail");
+                }}
+              >
                 {tag}
               </DefaultTag>
             );
