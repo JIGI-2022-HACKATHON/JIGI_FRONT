@@ -59,9 +59,10 @@ const Record = () => {
             disable={!value.position}
             items={Framework}
             value={value.library}
-            onChangeValue={(value) =>
-              setValue((state) => ({ ...state, library: value }))
-            }
+            onChangeValue={(value) => {
+              console.log(value);
+              setValue((state) => ({ ...state, library: value }));
+            }}
           />
         </div>
 
